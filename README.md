@@ -195,44 +195,6 @@ ZYREN is built on modern Android development practices, emphasizing clean archit
 
 Download the latest pre-compiled APK from the [Releases Page](https://github.com/imluban/ZYREN/releases/latest).
 
-<details>
-<summary><b>Building from Source</b></summary>
-<br>
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/imluban/ZYREN.git
-   cd ZYREN
-   ```
-
-2. **Configure Android SDK**
-   Create a `local.properties` file:
-
-   ```bash
-   echo "sdk.dir=/path/to/your/android/sdk" > local.properties
-   ```
-
-   _(For detailed paths on Windows/macOS/Linux, refer to [SETUP.md](SETUP.md))_
-
-3. **Firebase Configuration (Optional)**
-   Firebase is required for analytics and crash reporting. See the instructions in [SETUP.md](SETUP.md#3-configure-firebase-optional) for adding your `google-services.json`.
-
-4. **Build the Application**
-   ZYREN has two build variants: **FOSS** (without Google Play Services / Cast) and **GMS** (with Cast support).
-
-   - To build the **FOSS** Universal Debug variant:
-     ```bash
-     ./gradlew assembleUniversalFossDebug
-     ```
-   - To build the **GMS** Universal Debug variant:
-     ```bash
-     ./gradlew assembleUniversalGmsDebug
-     ```
-
-   _(For optimized ARM64 builds, release builds, or other options, refer to [SETUP.md](SETUP.md))_
-
-</details>
 
 ---
 
@@ -258,7 +220,7 @@ Without the support of this incredible open-source community, none of this would
 
 <!-- readme: contributors -start -->
 <table>
-<tr><td align="center"><a href="https://github.com/iad1tya"><img src="https://avatars.githubusercontent.com/u/147871321?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/mdakashhossain1"><img src="https://avatars.githubusercontent.com/u/85729564?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/Rajendra0309"><img src="https://avatars.githubusercontent.com/u/103703747?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/soumya-99"><img src="https://avatars.githubusercontent.com/u/59480692?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/kaunkrishna"><img src="https://avatars.githubusercontent.com/u/270065466?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/VardhmanSurana"><img src="https://avatars.githubusercontent.com/u/100058534?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/andrewvalletta"><img src="https://avatars.githubusercontent.com/u/137303110?v=4" width="60" height="60" /></a></td></tr>
+<tr><td align="center"><a href="https://github.com/imluban"><img src="https://avatars.githubusercontent.com/u/134672863?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/iad1tya"><img src="https://avatars.githubusercontent.com/u/147871321?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/mdakashhossain1"><img src="https://avatars.githubusercontent.com/u/85729564?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/Rajendra0309"><img src="https://avatars.githubusercontent.com/u/103703747?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/soumya-99"><img src="https://avatars.githubusercontent.com/u/59480692?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/kaunkrishna"><img src="https://avatars.githubusercontent.com/u/270065466?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/VardhmanSurana"><img src="https://avatars.githubusercontent.com/u/100058534?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/andrewvalletta"><img src="https://avatars.githubusercontent.com/u/137303110?v=4" width="60" height="60" /></a></td></tr>
 </table>
 <!-- readme: contributors -end -->
 
@@ -309,4 +271,5 @@ Because we do not host any media files, we cannot process DMCA takedown requests
 
 <div align="center">
   <p>Licensed under <a href="LICENSE">GPL-3.0</a></p>
+  <p>© 2026 LAXON. All rights reserved.</p>
 </div>
