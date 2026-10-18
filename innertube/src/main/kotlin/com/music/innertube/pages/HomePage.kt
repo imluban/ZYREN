@@ -1,5 +1,6 @@
 package com.music.innertube.pages
 
+import com.music.zyren.metadata.cleaner.ApiText
 import com.music.innertube.models.Album
 import com.music.innertube.models.AlbumItem
 import com.music.innertube.models.Artist
@@ -11,8 +12,8 @@ import com.music.innertube.models.PlaylistItem
 import com.music.innertube.models.SectionListRenderer
 import com.music.innertube.models.SongItem
 import com.music.innertube.models.YTItem
-import com.music.innertube.models.filterExplicit
 import com.music.innertube.models.filterBlockedArtists
+import com.music.innertube.models.filterExplicit
 import com.music.innertube.models.filterVideoSongs
 import com.music.innertube.models.oddElements
 
@@ -82,7 +83,7 @@ data class HomePage(
             val subtitleRuns = renderer.subtitle?.runs?.oddElements() ?: return null
             SongItem(
               id = renderer.navigationEndpoint.watchEndpoint?.videoId ?: return null,
-              title = renderer.title.runs?.firstOrNull()?.text ?: return null,
+              title = renderer.title.runs?.firstOrNull()?.text?.let(ApiText::clean) ?: return null,
               artists =
                 subtitleRuns
                   .filter { run ->
@@ -91,11 +92,11 @@ data class HomePage(
                         run.navigationEndpoint.browseEndpoint.browseId.startsWith("MPREb_") != true)
                   }
                   .map { run ->
-                    Artist(name = run.text, id = run.navigationEndpoint?.browseEndpoint?.browseId)
+                    Artist(name = ApiText.clean(run.text), id = run.navigationEndpoint?.browseEndpoint?.browseId)
                   }
                   .ifEmpty {
                     subtitleRuns.firstOrNull()?.let { run ->
-                      listOf(Artist(name = run.text, id = null))
+                      listOf(Artist(name = ApiText.clean(run.text), id = null))
                     } ?: emptyList()
                   },
               album =
@@ -105,7 +106,7 @@ data class HomePage(
                   }
                   ?.let {
                     Album(
-                      name = it.text,
+                      name = ApiText.clean(it.text),
                       id = it.navigationEndpoint?.browseEndpoint?.browseId ?: return@let null
                     )
                   },
@@ -129,10 +130,10 @@ data class HomePage(
                   ?.playNavigationEndpoint
                   ?.watchPlaylistEndpoint
                   ?.playlistId ?: return null,
-              title = renderer.title.runs?.firstOrNull()?.text ?: return null,
+              title = renderer.title.runs?.firstOrNull()?.text?.let(ApiText::clean) ?: return null,
               artists =
                 renderer.subtitle?.runs?.oddElements()?.drop(1)?.map {
-                  Artist(name = it.text, id = it.navigationEndpoint?.browseEndpoint?.browseId)
+                  Artist(name = ApiText.clean(it.text), id = it.navigationEndpoint?.browseEndpoint?.browseId)
                 },
               year = null,
               thumbnail =
@@ -148,10 +149,10 @@ data class HomePage(
               id =
                 renderer.navigationEndpoint.browseEndpoint?.browseId?.removePrefix("VL")
                   ?: return null,
-              title = renderer.title.runs?.firstOrNull()?.text ?: return null,
+              title = renderer.title.runs?.firstOrNull()?.text?.let(ApiText::clean) ?: return null,
               author =
                 Artist(
-                  name = renderer.subtitle?.runs?.firstOrNull()?.text ?: return null,
+                  name = renderer.subtitle?.runs?.firstOrNull()?.text?.let(ApiText::clean) ?: return null,
                   id = null
                 ),
               songCountText = null,
@@ -183,7 +184,7 @@ data class HomePage(
           renderer.isArtist -> {
             ArtistItem(
               id = renderer.navigationEndpoint.browseEndpoint?.browseId ?: return null,
-              title = renderer.title.runs?.lastOrNull()?.text ?: return null,
+              title = renderer.title.runs?.lastOrNull()?.text?.let(ApiText::clean) ?: return null,
               thumbnail =
                 renderer.thumbnailRenderer.musicThumbnailRenderer?.getThumbnailUrl() ?: return null,
               shuffleEndpoint =
@@ -208,7 +209,8 @@ data class HomePage(
     }
   }
 
-  fun filterBlockedArtists() = copy(sections = sections.map { it.copy(items = it.items.filterBlockedArtists()) })
+  fun filterBlockedArtists() =
+    copy(sections = sections.map { it.copy(items = it.items.filterBlockedArtists()) })
 
   fun filterExplicit(enabled: Boolean = true) =
     if (enabled) {

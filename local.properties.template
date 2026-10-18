@@ -10,3 +10,7 @@ sdk.dir=YOUR_ANDROID_SDK_PATH
 
 # Optional: your Discord application ID (for Discord Rich Presence)
 DISCORD_APPLICATION_ID=
+
+# Optional: your own Last.fm API account (https://www.last.fm/api/account/create)
+LASTFM_API_KEY=
+LASTFM_API_SECRET=

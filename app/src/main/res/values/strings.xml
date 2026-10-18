@@ -176,6 +176,7 @@
     <string name="lyrics_thumbnail_play_pause_desc">Show a play/pause button overlay on the song thumbnail in full-screen lyrics</string>
 
     <string name="picker_not_available">Document picker is not available on this device. Using app\'s default export directory.</string>
+    <string name="system_picker_unavailable">System picker is not available on this device.</string>
     <string name="edit_song">Edit song</string>
     <string name="song_title">Song title</string>
     <string name="song_artists">Song artists</string>
@@ -305,8 +306,24 @@
     <string name="apple_music">Apple Music</string>
     <string name="squiggly">Squiggly</string>
     <string name="misc">Misc</string>
+    <string name="haptics">Haptics</string>
+    <string name="haptics_desc">Configure vibration and tactile feedback</string>
+
     <string name="enable_haptics">Enable haptics</string>
     <string name="enable_haptics_desc">Provide haptic feedback while scrolling, clicking, and interacting with the app</string>
+    <string name="haptics_intensity">Haptic intensity</string>
+    <string name="haptics_intensity_desc">Adjust vibration strength for haptic feedback</string>
+    <string name="haptic_intensity_light">Light (Soft)</string>
+    <string name="haptic_intensity_medium">Medium (Standard)</string>
+    <string name="haptic_intensity_strong">Strong (Pronounced)</string>
+    <string name="haptic_click_feedback">Touch &amp; click feedback</string>
+    <string name="haptic_click_feedback_desc">Vibrate on button taps, navigation tabs, and switches</string>
+    <string name="haptic_long_press_feedback">Long press feedback</string>
+    <string name="haptic_long_press_feedback_desc">Vibrate when long pressing items and opening context menus</string>
+    <string name="haptic_scroll_edge_feedback">Scroll boundary feedback</string>
+    <string name="haptic_scroll_edge_feedback_desc">Vibrate softly when reaching the top or bottom edge of a list</string>
+    <string name="haptic_slider_feedback">Seekbar &amp; slider feedback</string>
+    <string name="haptic_slider_feedback_desc">Provide tactile ticks when adjusting progress and volume sliders</string>
 
     <string name="activity_history">Listening Summary</string>
     <string name="total_listening_time">Total Listening Time</string>
@@ -415,7 +432,7 @@
     <string name="restore_failed">Failed to restore backup</string>
 
     <string name="discord_integration">Discord Integration</string>
-    <string name="discord_information">echomusic uses the KizzyRPC library to set your Discord account\'s status. This involves using the Discord Gateway connection, which may be considered a violation of Discord\'s TOS. However, there are no known cases of user accounts being suspended for this reason. Use at your own risk.\n\echomusic will only extract your token, and everything else is stored locally.</string>
+    <string name="discord_information">ZYREN uses the KizzyRPC library to set your Discord account\'s status. This involves using the Discord Gateway connection, which may be considered a violation of Discord\'s TOS. However, there are no known cases of user accounts being suspended for this reason. Use at your own risk.\n\ZYREN will only extract your token, and everything else is stored locally.</string>
     <string name="dismiss">Dismiss</string>
     <string name="options">Options</string>
     <string name="preview">Preview</string>
@@ -495,10 +512,10 @@
     <string name="export_directory_unavailable">Unable to access an export directory on this device. Please set one manually.</string>
     <string name="set_listenbrainz_token">Set ListenBrainz Token</string>
 
-    <!-- Echo Extractor Settings -->
-    <string name="youtube_decryption_settings">Echo Extractor</string>
+    <!-- ZYREN Extractor Settings -->
+    <string name="youtube_decryption_settings">ZYREN Extractor</string>
     <string name="youtube_decryption_desc">Configure extractor settings</string>
-    <string name="youtube_decryption_support">Echo Extractor</string>
+    <string name="youtube_decryption_support">ZYREN Extractor</string>
     <string name="youtube_decryption_support_desc">Automatically extracts YouTube playback configurations. Locked to Active.</string>
     <string name="force_update_cipher">Force Update Configurations</string>
     <string name="force_update_cipher_desc">Download the latest extractor override mappings. Limited to 3 updates per day.</string>
@@ -587,7 +604,10 @@
     <string name="ai_provider_nvidia_help_desc">Configure AI settings for Visit build.nvidia.com for API keys</string>
     <string name="ai_provider_openai_help_desc">Configure AI settings for Visit platform.openai.com/api-keys</string>
     <string name="ai_provider_openrouter_help_desc">Configure AI settings for Visit openrouter.ai for free and paid models</string>
+    <string name="ai_provider_opper_help_desc">Configure AI settings for Visit platform.opper.ai</string>
     <string name="ai_provider_perplexity_help_desc">Configure AI settings for Visit perplexity.ai/settings/api</string>
+    <string name="ai_provider_requesty_help_desc">Configure AI settings for Visit app.requesty.ai/api-keys</string>
+    <string name="ai_provider_api_route_help_desc">Configure AI settings for API Route API key and model settings</string>
     <string name="ai_provider_xai_help_desc">Configure AI settings for Visit console.x.ai</string>
     <string name="ai_setup_guide_desc">Configure AI settings for API Credentials</string>
     <string name="ai_target_language_desc">Configure AI settings for Target Language</string>
@@ -822,7 +842,7 @@
     <string name="scrobble_delay_minutes_desc">Manage Scrobble delay minutes settings</string>
     <string name="ai_recommendations_refresh_desc">Configure AI settings for Refresh Recommendations</string>
     <string name="last_updated_desc">Manage Last updated settings</string>
-    <string name="youtube_decryption_settings_desc">Manage Echo Extractor settings</string>
+    <string name="youtube_decryption_settings_desc">Manage ZYREN Extractor settings</string>
     <string name="refresh_desc">Manage refresh settings</string>
     <string name="activity_status_desc">Manage activity_status settings</string>
     <string name="platform_status_desc">Manage platform_status settings</string>
@@ -842,20 +862,20 @@
     <string name="listen_together_logs_desc">Manage Connection logs settings</string>
     <string name="listen_together_choose_server_desc">Manage Choose server settings</string>
 
-    <!-- Echo Brain -->
+    <!-- ZYREN Brain -->
     <string name="echo_brain_analyzed_artists">Analyzed Artists</string>
     <plurals name="echo_brain_artists_mapped">
         <item quantity="one">%1$d artist mapped</item>
         <item quantity="other">%1$d artists mapped</item>
     </plurals>
-    <string name="echo_brain_beta">Echo Brain (Beta)</string>
+    <string name="echo_brain_beta">ZYREN Brain (Beta)</string>
     <string name="echo_brain_data_management">Data Management</string>
     <string name="echo_brain_discovered_genres">Discovered Genres</string>
     <plurals name="echo_brain_distinct_genres_identified">
         <item quantity="one">%1$d distinct genre identified</item>
         <item quantity="other">%1$d distinct genres identified</item>
     </plurals>
-    <string name="echo_brain_enable">Enable Echo Brain</string>
+    <string name="echo_brain_enable">Enable ZYREN Brain</string>
     <string name="echo_brain_enable_desc">Automatically add AI recommendations based on your listening habits</string>
     <string name="echo_brain_export_failed">Export failed</string>
     <string name="echo_brain_export_profile">Export Profile</string>
@@ -937,5 +957,21 @@
     <string name="import_custom_font">Import Custom Font</string>
     <string name="typography_preview">Typography Preview</string>
     <string name="preview_text_quote">The quick brown fox jumps over the lazy dog</string>
-</resources>
 
+
+    <string name="recommendation_source">Recommendation provider</string>
+    <string name="recommendation_source_youtube">YouTube Music</string>
+    <string name="recommendation_source_spotify">Spotify</string>
+    <string name="spotify_recommendation_login_required">Spotify is not connected. Connect your account in Settings > Integrations to use Spotify recommendations.</string>
+    <string name="varispeed">Enable varispeed</string>
+    <string name="varispeed_description">Link pitch to playback speed, resulting in tape-style speedup and slowdown effects</string>
+
+    <string name="speed">Speed</string>
+
+    <string name="show_seek_buttons">Show 10-second seek buttons</string>
+    <string name="show_seek_buttons_desc">Show backward and forward buttons in the full player</string>
+    <string name="seek_back_ten_seconds">Rewind 10 seconds</string>
+    <string name="seek_forward_ten_seconds">Forward 10 seconds</string>
+    <string name="seek_back_ten_short">−10 s</string>
+    <string name="seek_forward_ten_short">+10 s</string>
+</resources>

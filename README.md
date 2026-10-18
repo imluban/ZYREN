@@ -1,6 +1,10 @@
 <div align="center">
-  <img src="assets/banner.png" alt="ZYREN Logo" />
+  <img src="assets/banner.png" alt="ZYREN Logo"/>
+
+  <p><b>A modern Android music app with ad-free streaming, synced lyrics, offline playback, and an intuitive user experience.</b></p>
 </div>
+
+---
 
 ## Overview
 
@@ -15,11 +19,14 @@ ZYREN delivers a seamless, premium listening experience by leveraging YouTube Mu
 
 ---
 
+[![Sponsor](https://readme.cash/i/qx6lmx2nwz.svg)](https://readme.cash/c/qx6lmx2nwz)
+
+---
+
 ## Table of Contents
 
 - [Overview](#overview)
 - [Screenshots](#screenshots)
-- [Technical Architecture & Stack](#technical-architecture--stack)
 - [Features](#features)
 - [Installation & Setup](#installation--setup)
 - [Contributors](#contributors)
@@ -59,57 +66,16 @@ ZYREN delivers a seamless, premium listening experience by leveraging YouTube Mu
         <img src="Screenshots/library.png" alt="Music Library" width="220" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);"/>
       </td>
     </tr>
-    <tr>
-      <td align="center" style="padding: 15px; border: none;">
-        <b>Liquid Glass Default</b><br><br>
-        <img src="Screenshots/Liquid%20Glass%20Default.png" alt="Liquid Glass Default" width="220" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);"/>
-      </td>
-      <td align="center" style="padding: 15px; border: none;">
-        <b>Liquid Glass (Apple)</b><br><br>
-        <img src="Screenshots/Liquid%20Glass%20Apple%20Inspired.png" alt="Liquid Glass (Apple)" width="220" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);"/>
-      </td>
-      <td align="center" style="padding: 15px; border: none;">
-        <b>Liquid Glass (Scrolling)</b><br><br>
-        <img src="Screenshots/Liquid%20Glass%20Apple%20Inspired%20(While%20Scrolling).png" alt="Liquid Glass (Scrolling)" width="220" style="border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);"/>
-      </td>
-    </tr>
   </table>
 </div>
 
 ---
 
-## Technical Architecture & Stack
-
-ZYREN is built on modern Android development practices, emphasizing clean architecture, modularity, and high performance.
-
-### Core Stack
-- **Kotlin:** 100% written in Kotlin, utilizing Coroutines and Flow for asynchronous data streams and state management.
-- **UI Framework:** Jetpack Compose (Material 3). We use a heavily customized dynamic color system that extends M3 with iOS-inspired glassmorphism effects via `RenderEffect`.
-- **Architecture:** MVVM (Model-View-ViewModel) combined with Clean Architecture principles. State is managed via `StateFlow` and hoisted where appropriate.
-- **Dependency Injection:** Hilt (Dagger) for robust, compile-time verified dependency injection across view models, repositories, and services.
-
-### Media & Playback
-- **Media3 (ExoPlayer):** The playback engine is powered by AndroidX Media3, providing a robust `MediaSessionService` that deeply integrates with Android's system media controls, Android Auto, and background playback capabilities.
-- **InnerTubeX Engine:** Handles complex media stream resolution, chunked caching, zero-latency read-ahead, and resilient playback bypassing BotGuard.
-- **Local Media Management:** Built-in capability to parse and play local on-device `.mp3`, `.flac`, and `.m4a` files.
-
-### Persistence & Data
-- **Room Database:** SQLite abstraction for caching songs, albums, artists, custom playlists, and offline lyrics locally.
-- **DataStore:** Type-safe preference storage using Jetpack DataStore (Preferences and Proto) to handle user settings and UI state persistence.
-
-### Distinctive Features Under the Hood
-- **Listen Together:** A custom real-time WebSockets synchronization protocol allowing sub-millisecond precision playback coordination between multiple clients.
-- **AI Lyrics Translation:** Configurable API integrations (OpenRouter, OpenAI) allowing on-the-fly, contextual translation of song lyrics.
-- **Spotify Fast Sync:** A dedicated sync engine that securely pulls user playlists from the Spotify Web API and matches them against the YouTube Music catalog.
-
----
-
 ## Features
 
-### Upcoming Features
+### What's New
 
-> - **Dynamic Island Support** — Enhanced playback notifications on supported Android devices.
-> - **Podcast Support** — Listen to podcasts alongside your music library.
+> **Music DNA (New!)** — Instantly uncover the backstory of any track. ZYREN queries Genius for deep track annotations, and intelligently falls back to Wikipedia API extracts for regional or obscure tracks where crowd-sourced meanings are missing.
 
 <br>
 
@@ -117,9 +83,7 @@ ZYREN is built on modern Android development practices, emphasizing clean archit
 <summary><b>Streaming & Playback</b></summary>
 <br>
 
-- **Local Media Support** — Play music files stored directly on your device.
 - **Ad-Free** — Stream without any interruptions.
-- **InnerTubeX Engine** — Highly resilient playback engine bypassing age-restrictions and BotGuard with chunked caching and zero-latency read-ahead.
 - **Data Saver Mode** — Reduce data consumption when streaming on cellular networks.
 - **Seamless Playback** — Switch effortlessly between audio-only and video modes.
 - **Background Playback** — Listen while using other apps or with the screen off.
@@ -149,14 +113,14 @@ ZYREN is built on modern Android development practices, emphasizing clean archit
 - **Lyrics+** — New lyrics provider for improved accuracy and coverage.
 - **AI Translation** — Built-in Google Translate integration for lyrics in any language.
 
+  For AI lyrics translation, select **API Route** in the AI settings, enter your [API key](https://www.api-route.com/api-keys), and choose a model available to that key. The preset uses `https://global.api-route.com/v1/chat/completions` with `claude-fable-5-1`; you can enter another exact model ID from the authenticated `/v1/models` catalog using the custom model option. Model availability depends on your key's group and permissions. See the [quickstart](https://www.api-route.com/docs/quickstart).
+
 </details>
 
 <details>
 <summary><b>Integrations</b></summary>
 <br>
 
-- **Import & Sync from Spotify** — Bring your playlists over with ease and keep them up-to-date with one-tap Fast Sync.
-- **Listen Together** — Sync music in real time, similar to Spotify Jam.
 - **Music Sharing via Odesli** — Share songs as Song.link for cross-platform listening.
 - **Set as Ringtone** — Directly set any song as your device ringtone.
 
@@ -175,8 +139,6 @@ ZYREN is built on modern Android development practices, emphasizing clean archit
 <summary><b>Customization</b></summary>
 <br>
 
-- **Redesigned UI** — Cleaner, faster, and more intuitive interface from the ground up.
-- **Settings Search Index** — Quickly find and navigate to any settings option instantly.
 - **UI Density Scale** — Adjust interface spacing to your preference.
 - **High Refresh Rate Support** — Smoother UI and animations on supported displays.
 - **Fluid UI & Animations** — Material 3 Emphasized easing and GPU-accelerated lyrics for a silky smooth, lag-free experience.
@@ -195,6 +157,44 @@ ZYREN is built on modern Android development practices, emphasizing clean archit
 
 Download the latest pre-compiled APK from the [Releases Page](https://github.com/imluban/ZYREN/releases/latest).
 
+<details>
+<summary><b>Building from Source</b></summary>
+<br>
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/imluban/ZYREN.git
+   cd ZYREN
+   ```
+
+2. **Configure Android SDK**
+   Create a `local.properties` file:
+
+   ```bash
+   echo "sdk.dir=/path/to/your/android/sdk" > local.properties
+   ```
+
+   _(For detailed paths on Windows/macOS/Linux, refer to [SETUP.md](SETUP.md))_
+
+3. **Firebase Configuration (Optional)**
+   Firebase is required for analytics and crash reporting. See the instructions in [SETUP.md](SETUP.md#3-configure-firebase-optional) for adding your `google-services.json`.
+
+4. **Build the Application**
+   ZYREN has two build variants: **FOSS** (without Google Play Services / Cast) and **GMS** (with Cast support).
+
+   - To build the **FOSS** Universal Debug variant:
+     ```bash
+     ./gradlew assembleUniversalFossDebug
+     ```
+   - To build the **GMS** Universal Debug variant:
+     ```bash
+     ./gradlew assembleUniversalGmsDebug
+     ```
+
+   _(For optimized ARM64 builds, release builds, or other options, refer to [SETUP.md](SETUP.md))_
+
+</details>
 
 ---
 
@@ -220,7 +220,10 @@ Without the support of this incredible open-source community, none of this would
 
 <!-- readme: contributors -start -->
 <table>
-<tr><td align="center"><a href="https://github.com/iad1tya"><img src="https://avatars.githubusercontent.com/u/147871321?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/mdakashhossain1"><img src="https://avatars.githubusercontent.com/u/85729564?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/Rajendra0309"><img src="https://avatars.githubusercontent.com/u/103703747?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/soumya-99"><img src="https://avatars.githubusercontent.com/u/59480692?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/kaunkrishna"><img src="https://avatars.githubusercontent.com/u/270065466?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/VardhmanSurana"><img src="https://avatars.githubusercontent.com/u/100058534?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/andrewvalletta"><img src="https://avatars.githubusercontent.com/u/137303110?v=4" width="60" height="60" /></a></td></tr>
+<tr><td align="center"><a href="https://github.com/imluban"><img src="https://github.com/imluban.png?size=120" width="60" height="60" /></a></td></tr>
+<tr><td align="center"><a href="https://github.com/iad1tya"><img src="https://avatars.githubusercontent.com/u/147871321?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/mdakashhossain1"><img src="https://avatars.githubusercontent.com/u/85729564?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/Roshan-aa11"><img src="https://avatars.githubusercontent.com/u/192568043?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/VardhmanSurana"><img src="https://avatars.githubusercontent.com/u/100058534?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/Rajendra0309"><img src="https://avatars.githubusercontent.com/u/103703747?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/pranav6004"><img src="https://avatars.githubusercontent.com/u/156088278?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/soumya-99"><img src="https://avatars.githubusercontent.com/u/59480692?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/kaunkrishna"><img src="https://avatars.githubusercontent.com/u/270065466?v=4" width="60" height="60" /></a></td></tr>
+<tr><td align="center"><a href="https://github.com/andrewvalletta"><img src="https://avatars.githubusercontent.com/u/137303110?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/Berserkr2k"><img src="https://avatars.githubusercontent.com/u/127702589?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/bivekk51"><img src="https://avatars.githubusercontent.com/u/115235822?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/DennyHo0917"><img src="https://avatars.githubusercontent.com/u/149746199?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/Felixkw12"><img src="https://avatars.githubusercontent.com/u/151852644?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/Mickael81"><img src="https://avatars.githubusercontent.com/u/184148670?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/pranavxdevops"><img src="https://avatars.githubusercontent.com/u/110167539?v=4" width="60" height="60" /></a></td><td align="center"><a href="https://github.com/TanvirSdq"><img src="https://avatars.githubusercontent.com/u/112406045?v=4" width="60" height="60" /></a></td></tr>
+<tr><td align="center"><a href="https://github.com/Thibaultjaigu"><img src="https://avatars.githubusercontent.com/u/84420566?v=4" width="60" height="60" /></a></td></tr>
 </table>
 <!-- readme: contributors -end -->
 
@@ -239,7 +242,6 @@ ZYREN stands on the shoulders of several excellent open-source projects. Sincere
 | **[SimpMusic](https://github.com/maxrave-dev/SimpMusic)**                                                                 | Lyrics implementation reference                     |
 | **[Music Recognizer](https://github.com/aleksey-saenko/MusicRecognizer)**                                                 | Audio recognition (Echo Find)                       |
 | **[BravePipe](https://github.com/bravepipeproject/BravePipe)**                                                            | Decryption handling and backup playback engine      |
-| **[InnerTubeX](https://github.com/MetrolistGroup/innertubex)**                                                            | Advanced stream resolution, playback resilience, and BotGuard bypass      |
 
 ---
 
@@ -271,5 +273,4 @@ Because we do not host any media files, we cannot process DMCA takedown requests
 
 <div align="center">
   <p>Licensed under <a href="LICENSE">GPL-3.0</a></p>
-  <p>© 2026 LAXON. All rights reserved.</p>
 </div>

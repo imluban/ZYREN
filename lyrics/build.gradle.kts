@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-  namespace = "com.music.echo.lyrics"
-  compileSdk = 36
+  namespace = "com.music.zyren.lyrics"
+  compileSdk = 37
   defaultConfig { minSdk = 26 }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -38,4 +38,6 @@ dependencies {
   implementation(libs.ktor.client.okhttp)
   implementation(libs.ktor.client.content.negotiation)
   implementation(libs.ktor.serialization.json)
+  testImplementation(libs.junit)
+  testImplementation(libs.json)
 }

@@ -1,7 +1,7 @@
 package com.lubannoor.pulse.lyrics
 
 import android.content.Context
-import com.music.echo.unison.Unison
+import com.music.zyren.unison.Unison
 import com.lubannoor.pulse.constants.UnisonLyricsEnabledKey
 import com.lubannoor.pulse.utils.dataStore
 import com.lubannoor.pulse.utils.get

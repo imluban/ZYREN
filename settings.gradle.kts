@@ -29,12 +29,17 @@ include(
     ":shazamkit",
     ":artistvideo",
     ":canvas",
-    ":echomusiccanvas",
+    ":zyrencanvas",
     ":applecanvas",
     ":unison",
     ":core",
     ":lyrics",
-    ":playback"
+    ":playback",
+    ":usbaudio",
+    ":metadata",
+    ":dsp-core",
+    ":audio-dsp",
+    ":domain"
 )
 
 

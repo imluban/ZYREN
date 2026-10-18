@@ -41,7 +41,7 @@ data class SongItem(
     get() = musicVideoType != null && musicVideoType != MUSIC_VIDEO_TYPE_ATV
 
   override val shareLink: String
-    get() = "https://share.echomusic.fun/watch?v=$id"
+    get() = "https://music.youtube.com/watch?v=$id"
 }
 
 data class AlbumItem(
@@ -56,7 +56,7 @@ data class AlbumItem(
   val description: String? = null,
 ) : YTItem() {
   override val shareLink: String
-    get() = "https://share.echomusic.fun/playlist?list=$playlistId"
+    get() = "https://music.youtube.com/playlist?list=$playlistId"
 }
 
 data class PlaylistItem(
@@ -74,7 +74,7 @@ data class PlaylistItem(
     get() = false
 
   override val shareLink: String
-    get() = "https://share.echomusic.fun/playlist?list=$id"
+    get() = "https://music.youtube.com/playlist?list=$id"
 }
 
 data class ArtistItem(
@@ -90,7 +90,7 @@ data class ArtistItem(
     get() = false
 
   override val shareLink: String
-    get() = "https://share.echomusic.fun/channel/$id"
+    get() = "https://music.youtube.com/channel/$id"
 }
 
 fun <T : YTItem> List<T>.filterExplicit(enabled: Boolean = true) =
@@ -114,18 +114,27 @@ fun <T : YTItem> List<T>.filterYoutubeShorts(enabled: Boolean = false) =
     this
   }
 
-
-fun <T : YTItem> List<T>.filterBlockedArtists(blockedArtists: Set<String> = com.music.innertube.YouTube.blockedArtists): List<T> =
+fun <T : YTItem> List<T>.filterBlockedArtists(
+  blockedArtists: Set<String> = com.music.innertube.YouTube.blockedArtists
+): List<T> =
   if (blockedArtists.isNotEmpty()) {
     val blockedIds = blockedArtists.map { it.substringBefore("||") }.toSet()
-    val blockedNames = blockedArtists.mapNotNull { if (it.contains("||")) it.substringAfter("||") else null }.toSet()
-    
+    val blockedNames =
+      blockedArtists.mapNotNull { if (it.contains("||")) it.substringAfter("||") else null }.toSet()
+
     filterNot { item ->
       when (item) {
-        is ArtistItem -> blockedIds.contains(item.id) || blockedIds.contains(item.channelId) || blockedNames.contains(item.title)
-        is SongItem -> item.artists.any { blockedIds.contains(it.id) || blockedNames.contains(it.name) }
-        is AlbumItem -> item.artists?.any { blockedIds.contains(it.id) || blockedNames.contains(it.name) } ?: false
-        is PlaylistItem -> blockedIds.contains(item.author?.id) || blockedNames.contains(item.author?.name)
+        is ArtistItem ->
+          blockedIds.contains(item.id) ||
+            blockedIds.contains(item.channelId) ||
+            blockedNames.contains(item.title)
+        is SongItem ->
+          item.artists.any { blockedIds.contains(it.id) || blockedNames.contains(it.name) }
+        is AlbumItem ->
+          item.artists?.any { blockedIds.contains(it.id) || blockedNames.contains(it.name) }
+            ?: false
+        is PlaylistItem ->
+          blockedIds.contains(item.author?.id) || blockedNames.contains(item.author?.name)
         else -> false
       }
     }

@@ -27,21 +27,23 @@ if (hasGoogleServicesConfig) {
 android {
   namespace = "com.lubannoor.pulse"
   compileSdk = 37
-  ndkVersion = "27.0.12077973"
+  ndkVersion = "28.2.13676358"
 
   defaultConfig {
     applicationId = "com.lubannoor.pulse"
     minSdk = 26
     targetSdk = 36
-    versionCode = 161
-    versionName = "1.4"
+    versionCode = 164
+    versionName = "1.4.3"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables.useSupportLibrary = true
 
     // LastFM API keys from GitHub Secrets
-    val lastFmKey = "266d77b5790e413ada7e41ef100d017a"
-    val lastFmSecret = "41d3ae3b039ddac06c37fb30055bf93b"
+    val lastFmKey =
+      localProperties.getProperty("LASTFM_API_KEY") ?: System.getenv("LASTFM_API_KEY") ?: "ac4873ffc42dd9728b5401a56ac979c0"
+    val lastFmSecret =
+      localProperties.getProperty("LASTFM_API_SECRET") ?: System.getenv("LASTFM_API_SECRET") ?: "12c0a5fecbc166f96299bb7ab62a8049"
 
     buildConfigField("String", "LASTFM_API_KEY", "\"$lastFmKey\"")
     buildConfigField("String", "LASTFM_SECRET", "\"$lastFmSecret\"")
@@ -77,7 +79,7 @@ android {
         ?: System.getenv("DISCORD_APPLICATION_ID")
         ?: "0"
     val discordApplicationIdLong = discordApplicationId.toLongOrNull() ?: 0L
-    val discordRedirectScheme = "discord-$discordApplicationId"
+    val discordRedirectScheme = "zyrenauth"
 
     buildConfigField("String", "DISCORD_APPLICATION_ID", "\"$discordApplicationId\"")
     buildConfigField("long", "DISCORD_APPLICATION_ID_LONG", "${discordApplicationIdLong}L")
@@ -248,9 +250,12 @@ dependencies {
 
   implementation(project(":core"))
   implementation(project(":playback"))
+  implementation(project(":audio-dsp"))
+  implementation(project(":dsp-core"))
+  implementation(project(":usbaudio"))
 
   // Firebase - GMS flavor only (excluded from F-Droid / FOSS builds)
-  "gmsImplementation"(platform("com.google.firebase:firebase-bom:33.1.0"))
+  "gmsImplementation"(platform("com.google.firebase:firebase-bom:34.19.0"))
   "gmsImplementation"("com.google.firebase:firebase-analytics")
   "gmsImplementation"("com.google.firebase:firebase-crashlytics")
 
@@ -319,9 +324,6 @@ dependencies {
   ksp("org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.20")
   annotationProcessor("org.jetbrains.kotlin:kotlin-metadata-jvm:2.4.20")
 
-
-
-
   implementation(project(":innertube"))
   implementation("com.github.MetrolistGroup.innertubex:innertubex-android:v0.7.0")
 
@@ -335,7 +337,7 @@ dependencies {
   implementation(project(":shazamkit"))
   implementation(project(":artistvideo"))
   implementation(project(":applecanvas"))
-  implementation(project(":echomusiccanvas"))
+  implementation(project(":zyrencanvas"))
   implementation(project(":paxsenixlyrics"))
   implementation(project(":unison"))
 
@@ -358,4 +360,8 @@ dependencies {
   implementation(libs.work.runtime.ktx)
   implementation(libs.androidx.core.splashscreen)
   implementation(libs.ffmpeg.kit.audio)
+
+  testImplementation(libs.junit)
+  testImplementation(libs.kotlinx.coroutines.test)
+  testImplementation(libs.robolectric)
 }
